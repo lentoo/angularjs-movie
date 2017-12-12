@@ -1,0 +1,25 @@
+<h1 class="page-header">{{data.title}}</h1>
+<div class="list-group">
+    <a href="#!/detail/{{item.id}}" class="list-group-item" ng-repeat="item in data.subjects">
+        <span class="badge">{{item.rating.average}}</span>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" ng-src="{{item.images.small}}" alt="">
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">{{item.title}}</h3>
+                <p>类型：<span>{{item.genres.join('、')}}</span></p>
+                <p>导演：<span ng-repeat="d in item.casts">{{d.name +($last?'':'、')}}</span></p>              
+            </div>
+        </div>
+    </a>
+</div>
+<div ng-show="!loding">
+    <p>共有：{{data.total}}条记录、当前第{{currentPage}}页、共{{count}}页</p>
+    <nav>
+        <ul class="pager">
+            <li><a ng-click="go(currentPage-1)">《上一页</a></li>
+            <li><a ng-click="go(currentPage+1)">下一页》</a></li>
+        </ul>
+    </nav>
+</div>
